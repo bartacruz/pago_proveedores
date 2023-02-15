@@ -1,6 +1,8 @@
 from odoo import _,models,fields,api
 from odoo.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 import logging
+
 
 _logger = logging.getLogger(__name__)
 
@@ -52,6 +54,33 @@ class liquidacion(models.Model):
     observaciones = fields.Text(string="Observaciones")
 
     document_number = fields.Integer(_('Document Number'), compute='_compute_document_number', store=True)
+   
+    @api.model
+    def _get_due(self):
+        ''' Obtiene el timedelta con el plazo configurado en settings'''
+        _dueTypes = {
+            'days': lambda interval: relativedelta(days=interval),
+            'hours': lambda interval: relativedelta(hours=interval),
+            'weeks': lambda interval: relativedelta(days=7*interval),
+            'months': lambda interval: relativedelta(months=interval),
+            'minutes': lambda interval: relativedelta(minutes=interval),
+        }
+        due = int(self.env['ir.config_parameter'].sudo().get_param('pago_proveedores.due'))
+        due_type = self.env['ir.config_parameter'].sudo().get_param('pago_proveedores.due_type')
+        print("_get_due",due,due_type)
+        if due and due_type:
+            return _dueTypes[due_type](due)
+        else:
+            return None
+    
+    @api.model
+    def get_due_date(self):
+        due = self._get_due()
+        if due:
+            due_date = fields.Datetime.now() - due
+        else:
+            due_date = fields.Datetime.now()
+        return due_date.date()
    
     @api.onchange('purchase_move_ids')
     def check_liquidacion_id(self):

@@ -22,14 +22,14 @@
 
     # always loaded
     'data': [
+        'data/ir_cron.xml',
         'security/ir.model.access.csv',
         'security/pago_proveedores_security.xml',
         'wizard/purchase_move_wizard.xml',
         'wizard/pago_proveedores_pagos_wizard.xml',
         'views/liquidacion.xml',
         'views/purchase_move.xml',
-    
-        
+        'views/res_config_settings.xml',
     ],
     "license": "AGPL-3",
     'installable': True,

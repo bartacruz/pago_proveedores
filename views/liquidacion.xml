@@ -88,28 +88,6 @@
             </field>
                   
         </record>
-        <record id="facturas_tree" model="ir.ui.view">
-            <field name="name">Facturas</field>
-            <field name="model">purchase.move</field>
-             
-            <field name="arch" type="xml">
-                <tree create="0">
-                <header>
-                    <button class="btn_primary" type="object" name="action_liquidate" string="Liquidar" confirm="¿Desea liquidar las facturas seleccionadas?"  />
-                 </header>
-                 <field name="name"/>
-                 <field name="company_id" optional="hide"/>
-                 <field name="partner_id"/>
-                 <field name="customer_id"/>
-                 <field name="invoice_date_due"/>
-                 <field name="towing_order_id" optional="hide"/>
-                 <field name="sale_order_id" optional="hide"/>
-                 <field name="purchase_order_id"/>
-                 <field name="amount_total"/>
-                 <field name="liquidacion_estado"/>
-                </tree> 
-            </field>          
-        </record>
 
         <record id="partner_tree" model="ir.ui.view">
             <field name="name">Partner</field>
@@ -186,19 +164,7 @@
 
         
 
-        <record id="action_facturas_tree"              model="ir.actions.act_window">
-            <field name="name">Facturas</field>
-            <field name="res_model">purchase.move</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="purchase_move_view_search" />
-            <field name="context">{'search_default_purchase_move_not_liquidated':1}</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Crear nueva Liquidacion
-                </p>
-            </field>
-        </record>
-
+        
         <record id="pagos_tree" model="ir.ui.view">
             <field name="name">Pagos</field>
             <field name="model">pago_proveedores.pagos</field>

@@ -1,1 +1,1 @@
-from . import liquidacion, purchase_move,pagos,res_partner
+from . import liquidacion, purchase_move,pagos,res_partner, res_config_settings
