@@ -95,22 +95,20 @@
             <field name="arch" type="xml">
                 <tree create="0">
                 <header>
-                  <button class="btn_primary" type="object" name="action_liquidate" string="Liquidar" confirm="¿Desea liquidar las facturas seleccionadas?"  />
+                    <button class="btn_primary" type="object" name="action_liquidate" string="Liquidar" confirm="¿Desea liquidar las facturas seleccionadas?"  />
                  </header>
                  <field name="name"/>
-                 <field name="company_id"/>
+                 <field name="company_id" optional="hide"/>
                  <field name="partner_id"/>
                  <field name="customer_id"/>
                  <field name="invoice_date_due"/>
-                 <field name="towing_order_id"/>
-                 <field name="sale_order_id"/>
+                 <field name="towing_order_id" optional="hide"/>
+                 <field name="sale_order_id" optional="hide"/>
                  <field name="purchase_order_id"/>
                  <field name="amount_total"/>
-                 <field name="name"/>
                  <field name="liquidacion_estado"/>
                 </tree> 
-            </field>
-                  
+            </field>          
         </record>
 
         <record id="partner_tree" model="ir.ui.view">

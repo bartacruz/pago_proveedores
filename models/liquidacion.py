@@ -36,7 +36,7 @@ class liquidacion(models.Model):
         "liquidacion_id",
         string=_("Pagos"),
         index=True,
-        ondelete="restrict"
+        #ondelete="restrict"
     )
     fecha = fields.Date(string="Fecha Liquidacion", default=fields.Datetime.now)
     
